@@ -36,21 +36,21 @@ class Student(Human):
         self.grade = grade
 
     def __str__(self):
-        return f'student {self.name} {self.surname} (grade {self.grade})'
+        return f'{self.name} {self.surname} (grade {self.grade})'
 
 
 class Group:
     def __init__(self):
-        self.__title = 'Empty title'
-        self.__max_members = 99
+        self.__title = 'Group title'
+        self.__max_members = int()
         self.__members = []
 
     def get_max_members(self):
-        """  'getter' of group max members amount """
+        """  'getter' of group max members limit """
         return {self.__max_members}
 
     def set_max_members(self, set_members):
-        """ 'setter' of group max members amount """
+        """ 'setter' of group max members limit """
 
         if type(set_members) is int:
             self.__max_members = set_members
@@ -64,20 +64,11 @@ class Group:
     def set_title(self, new_title):
         """ 'setter' of group title """
 
-        # todo some more advanced title check rule and exception
+        # todo some more advanced check rule and exception
         if type(new_title) is str:
             self.__title = new_title
         else:
             'some titles naming global exception go here'
-
-    def search_member(self, search_parameter):
-        """ group members filter by surname, return list with matched members """
-        result = []
-        for member in self.__members:
-            if search_parameter in member:
-                result.append(member)
-
-        return result
 
     def add_member(self, member):
         if member not in self.__members and len(self.__members) < self.__max_members:
@@ -87,25 +78,65 @@ class Group:
         if member in self.__members:
             self.__members.remove(member)
 
+    def search_members(self, search_item):
+        """ in-group search method, return list with search query matches """
+
+        result = []
+
+        for member in self.__members:
+            if search_item in str(member):
+                result.append(str(member))
+        return result
+
     def __str__(self):
         return f'\nGroup "{self.__title}" ' \
-               f'include {len(self.__members)} members:\n\t' + '\n\t'.join(map(str, self.__members)) + '\n'
+               f'include {len(self.__members)}/{self.__max_members} members\n\t' \
+               + '\n\t'.join(map(str, self.__members)) + '\n'
 
 
 # 'entry point'
 if __name__ == '__main__':
 
-    some_std_group = Group()
-    some_std_group.set_title('Nice study hub')
-    some_std_group.set_max_members(10)
+    # creating study group based on Group class
+    std_group = Group()
+    std_group.set_title('Nice study hub')
+    std_group.set_max_members(10)
 
-    some_std_group.add_member(Student('Alex', 'Lavrenchuk', 'A'))
-    some_std_group.add_member(Student('Guido', 'Rossum', 'A++'))
-    some_std_group.add_member(Student('Helga', 'Hansen', 'A'))
-    some_std_group.add_member(Student('Peter', 'Pen', 'B'))
-    some_std_group.add_member(Student('Vasyl', 'Zaliznyak', 'A'))
+    # creating students instances based on Student class
+    stud_01 = Student('Ivan', 'Melnik', 'A')
+    stud_02 = Student('Guido', 'Rossum', 'A+')
+    stud_03 = Student('Helga', 'Hansen', 'A')
+    stud_04 = Student('Peter', 'Pen', 'B')
+    stud_05 = Student('Migel', 'Barbados', 'A')
+    stud_06 = Student('Bart', 'Smith', 'B')
+    stud_07 = Student('Rick', 'Sanchez', 'A+')
+    stud_08 = Student('Georg', 'Smith', 'A')
+    stud_09 = Student('Alexander', 'Melnik', 'A')
+    stud_10 = Student('Vasyl', 'Zaliznyak', 'A')
 
-    print(f'\nMembers limit of "{some_std_group.get_title()}" is {some_std_group.get_max_members()} members.')
+    stud_11 = Student('Debora', 'Morgan', 'A')
 
-    print(some_std_group)
+    # adding students instances to study group
+    std_group.add_member(stud_01)
+    std_group.add_member(stud_02)
+    std_group.add_member(stud_03)
+    std_group.add_member(stud_04)
+    std_group.add_member(stud_05)
+    std_group.add_member(stud_06)
+    std_group.add_member(stud_07)
+    std_group.add_member(stud_08)
+    std_group.add_member(stud_09)
+    std_group.add_member(stud_10)
 
+    std_group.add_member(stud_11)
+
+    print(f'\nMembers limit of "{std_group.get_title()}" is {str(std_group.get_max_members())[1:-1]} members')
+    print(std_group)
+
+    # search in group
+    search_query = input(str('Please enter in-group search query: '))
+    bs_t = '\n\t'  # adding support of backslash characters to f-string
+    print(f"\nUsing 'group.search' method in group '{std_group.get_title()}' "
+          f"\nsearching '{search_query}' "
+          f"\nfound {len(std_group.search_members(search_query))} matches "
+          f"\n\t{bs_t.join(std_group.search_members(search_query))}")
