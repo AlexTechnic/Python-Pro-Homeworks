@@ -1,0 +1,25 @@
+2023-02-20 16:19:44,314 - homework_03_members - INFO - A new member has been added to the group
+2023-02-20 16:19:44,315 - homework_03_members - INFO - A new member Ivan Melnik has been added to the "Nice study hub"
+2023-02-20 16:19:44,315 - homework_03_members - INFO - A new member Guido Rossum has been added to the "Nice study hub"
+2023-02-20 16:19:44,315 - homework_03_members - INFO - A new member Helga Hansen has been added to the "Nice study hub"
+2023-02-20 16:19:44,315 - homework_03_members - INFO - A new member Peter Pen has been added to the "Nice study hub"
+2023-02-20 16:19:44,315 - homework_03_members - INFO - A new member Migel Barbados has been added to the "Nice study hub"
+2023-02-20 16:19:44,315 - homework_03_members - INFO - A new member Bart Smith has been added to the "Nice study hub"
+2023-02-20 16:19:44,316 - homework_03_members - INFO - A new member Rick Sanchez has been added to the "Nice study hub"
+2023-02-20 16:19:44,316 - homework_03_members - INFO - A new member Georg Smith has been added to the "Nice study hub"
+2023-02-20 16:19:44,316 - homework_03_members - INFO - A new member Alexander Melnik has been added to the "Nice study hub"
+2023-02-20 16:19:44,316 - homework_03_members - INFO - A new member Vasyl Zaliznyak has been added to the "Nice study hub"
+2023-02-20 16:19:44,316 - homework_03_members - INFO - Process terminated by exception, message: <In group "Nice study hub" are already 10 members.> , logging stopped.
+
+2023-02-20 16:22:08,966 - homework_03_members - INFO - A new member Ivan Melnik has been added to the "Nice study hub"
+2023-02-20 16:22:08,966 - homework_03_members - INFO - A new member Guido Rossum has been added to the "Nice study hub"
+2023-02-20 16:22:08,966 - homework_03_members - INFO - A new member Helga Hansen has been added to the "Nice study hub"
+2023-02-20 16:22:08,966 - homework_03_members - INFO - A new member Peter Pen has been added to the "Nice study hub"
+2023-02-20 16:22:08,966 - homework_03_members - INFO - A new member Migel Barbados has been added to the "Nice study hub"
+2023-02-20 16:22:08,966 - homework_03_members - INFO - A new member Bart Smith has been added to the "Nice study hub"
+2023-02-20 16:22:08,967 - homework_03_members - INFO - A new member Rick Sanchez has been added to the "Nice study hub"
+2023-02-20 16:22:08,967 - homework_03_members - INFO - A new member Georg Smith has been added to the "Nice study hub"
+2023-02-20 16:22:08,967 - homework_03_members - INFO - A new member Alexander Melnik has been added to the "Nice study hub"
+2023-02-20 16:22:08,967 - homework_03_members - INFO - A new member Vasyl Zaliznyak has been added to the "Nice study hub"
+2023-02-20 16:22:08,967 - homework_03_members - INFO - Process terminated by exception, message: <In group "Nice study hub" are already 10 members.> , logging stopped.
+
