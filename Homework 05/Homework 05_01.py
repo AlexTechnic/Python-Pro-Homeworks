@@ -4,6 +4,9 @@
 прямокутника в n разів)."""
 
 
+from decimal import Decimal as dec
+
+
 class Rect:
 
     def __init__(self, a: int, b: int):
@@ -96,5 +99,5 @@ print(f'Rectangle X <= Y? {x <= y} \n')
 print(f'Rectangle X + Y  S = {x + y} cm^2 \n')
 
 # multiple and round operations of rectangles S
-print(f'Rectangle X * 5 = {round((x * 5), 1)} cm, S = {(x * 5) + 0} cm^2')
-print(f'Rectangle Y * 5 = {round((y * 5), 1)} cm, S = {(y * 5) + 0} cm^2 \n')
+print(f'Rectangle X * 5 = {x * 10} cm, S = {round(x + 0)} cm^2')
+print(f'Rectangle Y * 5 = {y * 10} cm, S = {round(y + 0)} cm^2 \n')
