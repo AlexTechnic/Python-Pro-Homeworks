@@ -157,21 +157,27 @@ if __name__ == '__main__':
 
         stud_11 = Student('Debora', 'Morgan', 17, 'A')
 
-        # adding students instances to group
-        std_group.add_member(stud_01)
-        std_group.add_member(stud_02)
-        std_group.add_member(stud_03)
-        std_group.add_member(stud_04)
-        std_group.add_member(stud_05)
-        std_group.add_member(stud_06)
-        std_group.add_member(stud_07)
-        std_group.add_member(stud_08)
-        std_group.add_member(stud_09)
-        std_group.add_member(stud_10)
-        std_group.add_member(stud_11)
+        # func to add some students instances to group with printing + logging
+        def std_group_add_member(name):
+            std_group.add_member(name)
+            print(f'Added {name} to the "{std_group.get_title()}"')
+            logger.info(f'Added {name} to the "{std_group.get_title()}"')
 
-        print(f'\nMembers limit of "{std_group.get_title()}" is {str(std_group.get_max_members())[1:-1]} members')
-        print(std_group)
+        # adding students to group
+        std_group_add_member(stud_01)
+        std_group_add_member(stud_02)
+        std_group_add_member(stud_03)
+        std_group_add_member(stud_04)
+        std_group_add_member(stud_05)
+        std_group_add_member(stud_06)
+        std_group_add_member(stud_07)
+        std_group_add_member(stud_08)
+        std_group_add_member(stud_09)
+        std_group_add_member(stud_10)
+        # std_group_add_member(stud_11)
+
+        # print(f'\nMembers limit of "{std_group.get_title()}" is {str(std_group.get_max_members())[1:-1]} members')
+        # print(std_group)
 
         # searching in group
         search_query = input(str('Please enter in-group search query: '))
