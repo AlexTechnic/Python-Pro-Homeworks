@@ -7,11 +7,11 @@ class PriceTypeError(Exception):
     Custom exception class for StoreItem class.
     """
     def __init__(self, item_name, item_price):
-        self.__item_name = item_name
-        self.__item_price = item_price
+        self._item_name = item_name
+        self._item_price = item_price
 
     def __str__(self):
-        return f'Item "{self.__item_name}" price type error: price type cant be <{str(type(self.__item_price))}>. ' \
+        return f'Item "{self._item_name}" price type error: price type cant be <{str(type(self._item_price))}>. ' \
                f'Expected float type in format "1234.00".'
 
 
@@ -20,11 +20,11 @@ class ZeroPriceError(Exception):
     Custom exception class for StoreItem class.
     """
     def __init__(self, item_name, item_price):
-        self.__item_name = item_name
-        self.__item_price = item_price
+        self._item_name = item_name
+        self._item_price = item_price
 
     def __str__(self):
-        return f'Item "{self.__item_name}" price <= 0 error: price cant be <{self.__item_price}>. '
+        return f'Item "{self._item_name}" price <= 0 error: price cant be <{self._item_price}>. '
 
 
 class StoreItem:
@@ -43,31 +43,31 @@ class StoreItem:
         item_price
             Float value in format '123.00'
         """
-        self.__item_category = item_category
-        self.__item_name = item_name
+        self._item_category = item_category
+        self._item_name = item_name
 
-        # do check of input value BEFORE assign to 'self.__item_price'
+        # do check of input value BEFORE assign to 'self._item_price'
         if not isinstance(item_price, float):
-            raise PriceTypeError(self.__item_name, item_price)
+            raise PriceTypeError(self._item_name, item_price)
         if item_price <= 0:
-            raise ZeroPriceError(self.__item_name, item_price)
-        self.__item_price = item_price
+            raise ZeroPriceError(self._item_name, item_price)
+        self._item_price = item_price
 
     def set_price(self, item_price):
-        self.__item_price = item_price
+        self._item_price = item_price
 
         if not isinstance(item_price, float):
-            raise PriceTypeError(self.__item_name, self.__item_price)
+            raise PriceTypeError(self._item_name, self._item_price)
         if item_price <= 0:
-            raise ZeroPriceError(self.__item_name, self.__item_price)
+            raise ZeroPriceError(self._item_name, self._item_price)
 
     def get_price(self):
-        return self.__item_price
+        return self._item_price
 
     def __str__(self):
-        return f'\nItem category: {self.__item_category} \n' \
-               f'name: {self.__item_name} \n' \
-               f'price: {self.__item_price} \n'
+        return f'\nItem category: {self._item_category} \n' \
+               f'name: {self._item_name} \n' \
+               f'price: {self._item_price} \n'
 
 
 class StoreCustomer:
@@ -104,37 +104,37 @@ class ShoppingCart:
             Can be any customer instance from class StoreCustomer.
         """
         self.cart_customer = cart_customer
-        self.__added_cart_items = []
-        self.__cart_items_qty = []
+        self._added_cart_items = []
+        self._cart_items_qty = []
         self.index = 0
 
     def add_item(self, cart_item: StoreItem, quantity: int = 1):
-        if cart_item in self.__added_cart_items:
-            index = self.__added_cart_items.index(cart_item)
-            self.__cart_items_qty[index] += quantity
+        if cart_item in self._added_cart_items:
+            index = self._added_cart_items.index(cart_item)
+            self._cart_items_qty[index] += quantity
         else:
-            self.__added_cart_items.append(cart_item)
-            self.__cart_items_qty.append(quantity)
+            self._added_cart_items.append(cart_item)
+            self._cart_items_qty.append(quantity)
 
     def cart_total(self):
         """ return float type sum value of all gathered items """
-        return sum(item.get_price() * self.__cart_items_qty[index] for index, item in enumerate(self.__added_cart_items))
+        return sum(item.get_price() * self._cart_items_qty[index] for index, item in enumerate(self._added_cart_items))
 
     def __iter__(self):
         self.index = 0
         return self
 
     def __next__(self):
-        if self.index < len(self.__added_cart_items):
+        if self.index < len(self._added_cart_items):
             self.index += 1
-            return self.__added_cart_items[self.index - 1]
+            return self._added_cart_items[self.index - 1]
         raise StopIteration
 
     def __str__(self):
         """ return total and sub-total bill for each item in shopping cart """
         res = '\n'.join(map(
             lambda item: f'{item[0]} ↳ Ordered {item[1]} pcs = {item[0].get_price() * item[1]} UAH',
-            zip(self.__added_cart_items, self.__cart_items_qty))
+            zip(self._added_cart_items, self._cart_items_qty))
         )
 
         return f'\n{self.cart_customer}\n{res}' \
@@ -161,11 +161,7 @@ if __name__ == '__main__':
     customer_01_order.add_item(item_002, 1)
     customer_01_order.add_item(item_003, 5)
 
-    # print order total bill
-    print(customer_01_order)
-    print('')
-
-    # print order items with __next__ iteration
+    # printing order items one-by-one with '__next__' iteration
     def customer_01_order_next():
         try:
             res = f'Customer {str(customer_01)}, next ordered item: {customer_01_order.__next__()}'
@@ -182,7 +178,26 @@ if __name__ == '__main__':
     print(customer_01_order_next())
     print('')
 
-    # print order items with 'for' iteration
-    for products in customer_01_order:
-        input('To print next item from customer order list press enter: ')
-        print(products)
+    # printing order items one-by-one with 'for' iteration
+    def pause():  # define some 'pause' in output
+        res = input(f'To print next item '
+                    f'from customer {customer_01.customer_name} {customer_01.customer_surname} order list '
+                    f'press enter: ')
+        return res
+
+    qty_index = 0
+
+    for order_item in customer_01_order:
+        pause()
+        print(f'Ordered {order_item._item_name}, '  # not good implementation with protected attributes of class 'item'
+              f'price {order_item._item_price} UAH, '
+              f'qty {customer_01_order._cart_items_qty[qty_index]}, '
+              f'subtotal = {(customer_01_order._cart_items_qty[qty_index]) * order_item._item_price} UAH\n')
+        qty_index += 1
+
+    qty_index = 0
+
+    # print order total bill
+    input('To print total order bill press enter: ')
+    print(f'\nTotal order:{customer_01_order}')
+
