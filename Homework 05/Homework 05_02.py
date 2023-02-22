@@ -8,7 +8,7 @@ class RationalNum:
 
     def __init__(self, a: int, b=1):
         """
-        Class of fraction number, supporting operations == != > >= <= + * with instances.
+        Class represent fraction number (1/2, 3/10, etc), supporting operations == != > >= <= + * with instances.
         :param a: numerator
         :param b: denominator
         """
