@@ -152,13 +152,13 @@ input('\nPress enter to continue: ')
 
 
 # TASK 4
-# expression that generates list of int numbers**3 from user defined int numbers in range [start:limit]
+# expression that generates list of cubes numbers (n**3) from user defined numbers range [start:end]
 cubes_start = 2
-cubes_limit = 10
-cubes = (item ** 3 for item in range(cubes_start, cubes_limit))
+cubes_end = 10
+cubes = (item ** 3 for item in range(cubes_start, cubes_end))
 cubes_list = [*cubes]
 
 # using result in output
 print('\nTASK 4:')
-res_text = f'List of cubes numbers calculating in range [{cubes_start}:{cubes_limit}]:\n{cubes_list}'
+res_text = f'List of cubes numbers calculating in range [{cubes_start}:{cubes_end}]:\n{cubes_list}'
 print(res_text)
