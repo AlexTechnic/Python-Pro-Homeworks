@@ -35,6 +35,7 @@ def geometric_progression(start_num: int = 1, mul: int = 2, lim: int = 65_535) -
 
 g = geometric_progression()
 
+# printing to output
 print('TASK 1:')
 user_stop_num = input('Please enter user defined int number that will stop progression generator (enter = skip): ')
 if user_stop_num.isnumeric():
@@ -158,7 +159,7 @@ cubes_end = 10
 cubes = (item ** 3 for item in range(cubes_start, cubes_end))
 cubes_list = [*cubes]
 
-# using result in output
+# printing to output
 print('\nTASK 4:')
 res_text = f'List of cubes numbers calculating in range [{cubes_start}:{cubes_end}]:\n{cubes_list}'
 print(res_text)
